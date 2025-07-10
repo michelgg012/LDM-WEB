@@ -1,0 +1,148 @@
+/* Estilos para el componente ResponsivePicture */
+.responsive-picture-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.responsive-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.responsive-image.loaded {
+  opacity: 1;
+}
+
+.responsive-image.error {
+  opacity: 0.7;
+  filter: grayscale(50%);
+}
+
+.responsive-image:hover {
+  transform: scale(1.02);
+}
+
+/* Placeholder mientras carga la imagen */
+.image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e0e0e0;
+  border-top: 2px solid #2196f3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Información de debug (solo en desarrollo) */
+.image-debug-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 2px 6px;
+  font-size: 9px;
+  border-radius: 0 0 8px 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  word-break: break-all;
+}
+
+.responsive-picture-container:hover .image-debug-info {
+  opacity: 1;
+}
+
+/* Error overlay */
+.error-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248, 249, 250, 0.9);
+  z-index: 1;
+}
+
+.error-message {
+  text-align: center;
+  color: #dc3545;
+  padding: 10px;
+}
+
+.error-message span {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.error-message small {
+  font-size: 10px;
+  color: #6c757d;
+}
+
+/* Optimizaciones específicas para diferentes contextos */
+.category-card .responsive-picture-container:hover .responsive-image {
+  transform: scale(1.05);
+}
+
+.product-card .responsive-picture-container:hover .responsive-image {
+  transform: scale(1.03);
+}
+
+/* Lazy loading effect */
+.responsive-image[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.responsive-image[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .responsive-image:hover {
+    transform: scale(1.01);
+  }
+  
+  .category-card .responsive-picture-container:hover .responsive-image {
+    transform: scale(1.02);
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-image:hover {
+    transform: none;
+  }
+  
+  .category-card .responsive-picture-container:hover .responsive-image {
+    transform: none;
+  }
+}

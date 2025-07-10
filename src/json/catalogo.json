@@ -1,0 +1,136 @@
+{
+  "Lácteos": {
+    "Cremas y Quesos Cremas": [
+      "Chantilly Tonadita 250gr",
+      "Crema 1lt Tonadita Sachet",
+      "Crema de Leche 10lt",
+      "Crema de Leche 350cc",
+      "Crema de Leche 4lt Tonadita",
+      "Dip Cheddar 190gr Tonadita",
+      "Queso Crema 300gr Tonadita",
+      "Queso Crema 3kg Tonadita",
+      "Queso Crema Light 300gr",
+      "Untable Azul Tonadita 180gr",
+      "Untable Gruyere Tonadita",
+      "Untable Jamón Tonadita",
+      "Untable Salame Tonadita"
+    ],
+    "Dulces de Leche": [
+      "Dulce de Leche 1kg Clas",
+      "Dulce de Leche 250gr Clas",
+      "Dulce de Leche 400gr Clas",
+      "Dulce de Leche Rep 400gr",
+      "Dulce de Leche Rep 4kg",
+      "Dulce de Leche Fam. 1kg",
+      "Dulce de Leche Rep. 1kg",
+      "Dulce de Leche Rep. 5kg"
+    ],
+    "Duros": [
+      "Queso Provolone Semi",
+      "Queso en Hebras Melincue",
+      "Queso Parmesano La Paulina",
+      "Queso Provolone Estac.",
+      "Queso Provolone Gauchito",
+      "Queso Reggianito Gauchito",
+      "Queso Reggianito Melincue",
+      "Queso Reggianito Noal"
+    ],
+    "Especiales": [
+      "Cheddar Barra Arroyo",
+      "Queso Azul 10 Fetas Tonadita",
+      "Queso Azul Emperador",
+      "Queso Cambembert 200gr",
+      "Queso Cheddar 10 Fetas",
+      "Queso Cheddar Americano",
+      "Queso Cheddar Tonadita 168",
+      "Queso Danbo 10 Fetas",
+      "Queso Mozzarella 10 Fetas",
+      "Queso Provolone 10 Fetas",
+      "Salsa Cheddar Abed.x3Kg",
+      "Salsa Cheddar Tonadita 3kg"
+    ],
+    "Leches": [
+      "Leche Descremada Milkaut",
+      "Leche Entera Milkaut 1lt"
+    ],
+    "Mantecas": [
+      "Manteca 100gr Tonadita",
+      "Manteca 200gr Tonadita",
+      "Manteca 100gr Estilo Real",
+      "Manteca 2.5kg Tonadita",
+      "Manteca 500gr Tonadita",
+      "Manteca 5kg Tonadita"
+    ],
+    "Muzzarellas": [
+      "Muzzarella Barra Lecherita",
+      "Muzzarella Barra SYC",
+      "Muzzarella Cavanelas",
+      "Muzzarella Cilindro El",
+      "Muzzarella Firtichio",
+      "Muzzarella La Purita",
+      "Muzzarella Plancha Reina",
+      "Muzzarella San Marino",
+      "Muzzarella Verona"
+    ],
+    "Pasta Blanda": [
+      "Queso Cremoso Arroyo",
+      "Queso Cremoso Cremac",
+      "Queso Cremoso La Lecherita",
+      "Queso Cremoso Melincue",
+      "Queso Cremoso Porcionado",
+      "Queso Port Salud Estilo Real",
+      "Queso Port Salut Cremac"
+    ],
+    "Semiduros": [
+      "Queso Barra Cremac Tybo",
+      "Queso Barra La Lecherita",
+      "Queso Fontina Melincue",
+      "Queso Fynbo Estilo Real",
+      "Queso Pategras Gauchito",
+      "Queso Pategras Melincue",
+      "Queso Provoleta D. Aurora",
+      "Queso Provoleta Gauchito"
+    ]
+  },
+  "Embutidos": {
+    "Fiambres": [
+      "Fiambre Pampita",
+      "Fiambre Riosol Cocido",
+      "Fiambre Vaes Azul Cocido",
+      "Fiambre Vaes Rojo Cocido"
+    ],
+    "Jamones": [
+      "Bondiola La Casona",
+      "Jamón Cocido Rectangular",
+      "Jamón Cocido Vaes Et. Negra",
+      "Jamón Crudo 1/2 Coliqueo",
+      "Jamón Platino Vaes"
+    ],
+    "Lomos": [
+      "Lomo de Cerdo Ahumado Vaes"
+    ],
+    "Mortadelas": [
+      "Mortadela Bocha Champion"
+    ],
+    "Pancetas": [
+      "Panceta Ahumada 331",
+      "Panceta Ahumada Etiq. Negra",
+      "Puntas Panceta"
+    ],
+    "Salames": [
+      "Bastón Pepperoni",
+      "Bastón Sal. Calabres 214",
+      "Bastón Sal. Milan Vaes",
+      "Salame Milan Champion"
+    ],
+    "Salchichas": [
+      "Salchicha La Blanca x6Un",
+      "Salchicha Larga Bark x18",
+      "Salchicha Swift x6Un"
+    ],
+    "Salchichones": [
+      "Salchichón C/Jamón Champ",
+      "Salchichón Prim. Champ"
+    ]
+  }
+}

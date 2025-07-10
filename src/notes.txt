@@ -1,0 +1,10 @@
+
+pakage -------->
+npm install react-router-dom
+ npm install axios
+npm install lucide-react
+npm install reactstrap react react-dom
+npm install reactstrap@latest react-transition-group@latest
+npm install fuse.js
+npm i --save react-lazy-load-image-component
+npm i styled-components

@@ -1,0 +1,5 @@
+export * from './axiosInstance'
+export * from './getCatalogo'
+export * from './getCategoriasArt'
+export * from './getRubros'
+export * from './getCategorias'
