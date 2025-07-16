@@ -13,9 +13,9 @@ export const ModernCarousel = () => {
   const slides = [
     {
       id: 1,
-      title: "Productos Frescos Todos los Días",
-      subtitle: "Calidad garantizada en cada compra",
-      description: "Descubre nuestra selección de productos frescos y de alta calidad",
+      title: "Descubre nuestra sección de productos",
+      // subtitle: "",
+      // description: "Descubre nuestra selección de productos frescos y de alta calidad",
       cta: "Ver Productos",
       ctaLink: "/catalogo",
       gradient: "from-green-600 to-emerald-700"
@@ -24,16 +24,16 @@ export const ModernCarousel = () => {
       id: 2,
       title: "Envío Gratuito",
       subtitle: "En compras superiores a $15,000",
-      description: "Disfruta de envío sin costo en Posadas, Garupá y Candelaria",
+      description: "Repartos de lunes a sábados. Hace tu pedido y recíbelo en el día.",
       cta: "Conocer Más",
-      ctaLink: "/Reparto",
+      ctaLink: "/Reparto",  
       gradient: "from-blue-600 to-cyan-700"
     },
     {
       id: 3,
       title: "Atención Personalizada",
       subtitle: "Estamos aquí para ayudarte",
-      description: "Contactanos para una atención especializada y personalizada",
+      description: "Tus insumos gastronómicos directos a la puerta de tu negocio.",
       cta: "Contactar",
       ctaLink: "https://wa.me/5493764374028?text=Hola%2C%20me%20interesa%20obtener%20más%20información%20sobre%20sus%20productos%20y%20servicios.%20¿Podrían%20ayudarme%3F",
       gradient: "from-purple-600 to-indigo-700"

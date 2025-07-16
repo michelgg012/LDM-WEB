@@ -1,10 +1,11 @@
 
 import HomePage from './Screen/HomePages';
-import { AboutUs,  } from './Presentation/header';
+import { AboutUs, ContactUs,  } from './Presentation/header';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import{ Header} from './Presentation/header/Header'
 import { ShoppingCart } from './Screen';
 import Footer from './Presentation/footer/Footer';
+import ScrollToTop from './Components/ScrollToTop';
 
 import { Category, CategoryDetail, SubcategoryProducts, ProductDetail } from './Presentation/catalog/category';
 import { DistributionTime } from './Presentation/distribution';
@@ -14,11 +15,12 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Header/>
       <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/products" element={<AboutUs />} />
-      <Route path="/AboutUs" element={<AboutUs />} />
+      <Route path="/Sobre-nosotros" element={<AboutUs />} />
+      <Route path="/Contactanos" element={<ContactUs />} />
       <Route path="/shoppingCart" element={<ShoppingCart />} />
       <Route path="/Reparto" element={<DistributionTime />} />
       

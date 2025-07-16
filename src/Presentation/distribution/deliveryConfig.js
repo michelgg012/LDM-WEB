@@ -15,13 +15,13 @@ export const DELIVERY_ZONES = {
             ]
         },
         schedules: [
-            { day: 'Lunes a Viernes', time: '9:00 AM - 6:00 PM' },
-            { day: 'Sábados', time: '9:00 AM - 1:00 PM' },
+            { day: 'Lunes a Viernes', time: '8:00 AM - 8:00 PM' },
+            { day: 'Sábados', time: '8:00 AM - 8:00 PM' },
             { day: 'Domingos', time: 'No hay reparto' }
         ],
         deliveryInfo: {
             freeShippingMinimum: 15000,
-            estimatedTime: '2-4 horas',
+            estimatedTime: '1-2 horas',
             coverage: 'Centro de la ciudad'
         }
     },
@@ -254,13 +254,21 @@ export const DELIVERY_ZONES = {
     }
 };
 
+
 // Configuración de la API de geocodificación
 export const GEOCODING_CONFIG = {
-  // Usando OpenStreetMap Nominatim (gratuito)
-  baseUrl: 'https://nominatim.openstreetmap.org/search',
-  defaultCity: 'Posadas',
-  defaultProvince: 'Misiones',
-  defaultCountry: 'Argentina'
+  // Google Maps API
+  googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+  
+  // Configuración específica para Posadas
+  posadas: {
+    lat: -27.3621,
+    lng: -55.9008,
+    radius: 20000 // 20km de radio
+  },
+  
+  // Restricciones de componentes para Google Places
+  components: 'country:ar|locality:posadas'
 };
 
 // Mensajes de la aplicación

@@ -1,4 +1,4 @@
-import { Truck, Clock, Shield, Phone, Star, Users } from 'lucide-react';
+import { Truck, Clock, Phone,  } from 'lucide-react';
 import './ServicesSection.css';
 
 export const ServicesSection = () => {
@@ -6,7 +6,7 @@ export const ServicesSection = () => {
     {
       icon: <Truck size={48} />,
       title: "Envío Gratuito",
-      description: "Sin costo en compras superiores a $15,000",
+      description: "En compras superiores a $15,000",
       color: "text-green-600"
     },
     {
@@ -15,16 +15,16 @@ export const ServicesSection = () => {
       description: "Entregas todos los días en Posadas, Garupá y Candelaria",
       color: "text-blue-600"
     },
-    {
-      icon: <Shield size={48} />,
-      title: "Calidad Garantizada",
-      description: "Productos frescos y de la mejor calidad",
-      color: "text-purple-600"
-    },
+    // {
+    //   icon: <Shield size={48} />,
+    //   title: "Calidad Garantizada",
+    //   description: "Productos frescos y de la mejor calidad",
+    //   color: "text-purple-600"
+    // },
     {
       icon: <Phone size={48} />,
       title: "Atención 24/7",
-      description: "Soporte y atención personalizada toda la semana",
+      description: "Los domingos estamos en sucursal posadas para que retires tus pedidos",
       color: "text-orange-600"
     }
   ];
@@ -53,7 +53,7 @@ export const ServicesSection = () => {
       <div className="services-container">
         <div className="services-header">
           <h2>¿Por qué elegir Lo de Mario?</h2>
-          <p>Ofrecemos la mejor experiencia de compra con servicios que marcan la diferencia</p>
+          <p>Ofrecemos la mejor relacion-precio-calidad del mercado con un servicio que marca la diferencia</p>
         </div>
 
         <div className="services-grid">

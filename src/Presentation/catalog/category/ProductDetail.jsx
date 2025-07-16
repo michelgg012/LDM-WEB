@@ -91,7 +91,8 @@ export const ProductDetail = () => {
       currency: 'ARS'
     }).format(price);
   };
-
+  console.log('algo',producto);
+  
   return (
     <div className="product-detail-container">
       <Breadcrumbs items={breadcrumbItems} />
@@ -99,8 +100,8 @@ export const ProductDetail = () => {
       <div className="product-detail-content">
         <div className="product-image-section">
           <div className="product-main-image">
-            <OptimizedImage
-              images={producto.images}
+            <img
+              src={producto.imageUrl}
               // fallbackUrl={producto.imageUrl}
               alt={producto.descripcion}
               className="product-image"
@@ -169,7 +170,7 @@ export const ProductDetail = () => {
             )}
           </div>
 
-          {producto.precios && producto.precios.length > 0 && (
+          {/* {producto.precios && producto.precios.length > 0 && (
             <div className="pricing-section">
               <h3>Precios por cantidad</h3>
               <div className="price-tiers">
@@ -201,12 +202,12 @@ export const ProductDetail = () => {
                 </div>
               )}
             </div>
-          )}
+          )} */}
 
           <div className="product-actions">
-            <button className="add-to-cart-btn">
+            {/* <button className="add-to-cart-btn">
               🛒 Agregar al carrito
-            </button>
+            </button> */}
             <button className="contact-btn">
               📞 Consultar disponibilidad
             </button>

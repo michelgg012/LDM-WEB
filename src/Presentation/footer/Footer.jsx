@@ -18,7 +18,6 @@ const Footer = () => {
             </div>
             <p className="company-description">
               Tu distribuidora de confianza en Posadas, Garupá y Candelaria. 
-              Productos frescos y de calidad para tu hogar y negocio.
             </p>
             {/* <div className="social-links">
               <a href="#" className="social-link" aria-label="Facebook">
@@ -39,8 +38,8 @@ const Footer = () => {
             <ul className="footer-links">
               <li><Link to="/">Inicio</Link></li>
               <li><Link to="/catalogo">Catálogo</Link></li>
-              <li><Link to="/Distributions">Repartos</Link></li>
-              <li><Link to="/AboutUs">Sobre Nosotros</Link></li>
+              <li><Link to="/Reparto">Repartos</Link></li>
+              <li><Link to="/Sobre-nosotros">Sobre Nosotros</Link></li>
               <li><Link to="/shoppingCart">Carrito</Link></li>
             </ul>
           </div>

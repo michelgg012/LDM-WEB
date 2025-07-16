@@ -1,0 +1,186 @@
+.store-hours-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  margin: 2rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.store-hours-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.store-hours-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1d7518;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #1d7518 0%, #2a9b24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.store-hours-header p {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.stores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.store-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+}
+
+.store-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1d7518 0%, #31982c 100%);
+}
+
+/* .store-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+} */
+
+.store-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.store-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.store-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.store-hours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hour-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+.hour-row:last-child {
+  border-bottom: none;
+}
+
+.hour-row:hover {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.days {
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.time {
+  font-weight: 600;
+  color: #059669;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.time.closed {
+  color: #dc2626;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .store-hours-section {
+    padding: 2rem 0;
+  }
+  
+  .store-hours-header h2 {
+    font-size: 2rem;
+  }
+  
+  .stores-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .store-card {
+    padding: 1.5rem;
+  }
+  
+  .hour-row {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .time {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .store-hours-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .store-card {
+    padding: 1rem;
+  }
+  
+  .store-header h3 {
+    font-size: 1.25rem;
+  }
+}

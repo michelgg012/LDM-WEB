@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getSubcategoriaPorSlug } from '../../../Services';
 import { Breadcrumbs } from '../../../Components/Breadcrumbs';
-import ProductCard from '../ProductCard';
 import './SubcategoryProducts.css';
 
 export const SubcategoryProducts = () => {
@@ -74,7 +73,8 @@ export const SubcategoryProducts = () => {
     );
   }
 
-  const breadcrumbItems = categoryInfo ? [
+  // Crear breadcrumb temporal usando los slugs de la URL
+  const breadcrumbItems = categoryInfo && categoryInfo.categoria && categoryInfo.subcategoria ? [
     {
       nombre: categoryInfo.categoria.nombre,
       url: categoryInfo.categoria.url
@@ -83,12 +83,23 @@ export const SubcategoryProducts = () => {
       nombre: categoryInfo.subcategoria.nombre,
       url: categoryInfo.subcategoria.url
     }
-  ] : [];
+  ] : [
+    // Breadcrumb temporal usando los slugs
+    {
+      nombre: categoriaSlug.charAt(0).toUpperCase() + categoriaSlug.slice(1).replace('-', ' '),
+      url: `/catalogo/${categoriaSlug}`
+    },
+    {
+      nombre: subcategoriaSlug.charAt(0).toUpperCase() + subcategoriaSlug.slice(1).replace('-', ' '),
+      url: `/catalogo/${categoriaSlug}/${subcategoriaSlug}`
+    }
+  ];
 
   return (
     <div className="subcategory-container">
+    
+      {/* Breadcrumb real */}
       <Breadcrumbs items={breadcrumbItems} />
-      
       <div className="subcategory-header">
         {categoryInfo && (
           <>

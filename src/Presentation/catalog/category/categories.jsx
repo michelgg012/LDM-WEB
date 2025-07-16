@@ -46,7 +46,7 @@ export const Category = () => {
   return (
     <div className="category-container">
       <div className="category-header">
-        <h1>Nuestras Categorías</h1>
+        <h1>Nuestro catalogo</h1>
         <p>Explora nuestra amplia variedad de productos organizados por categorías</p>
       </div>
       

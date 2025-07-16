@@ -35,7 +35,7 @@ export const Header = () => {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="desktop-actions">
+        {/* <div className="desktop-actions">
           <div className="cart-wrapper">
             <button 
               className="action-btn"
@@ -64,7 +64,7 @@ export const Header = () => {
           >
             <User size={20} />
           </button>
-        </div>
+        </div> */}
 
         {/* Mobile Menu Button */}
         <button 
@@ -94,7 +94,7 @@ export const Header = () => {
                 <MenuList onItemClick={closeMobileMenu} />
               </nav>
 
-              <div className="mobile-actions">
+              {/* <div className="mobile-actions">
                 <button 
                   className="mobile-action-btn"
                   onClick={() => {
@@ -128,7 +128,7 @@ export const Header = () => {
                   <User size={20} />
                   <span>Mi Cuenta</span>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         )}

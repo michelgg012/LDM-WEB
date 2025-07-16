@@ -12,6 +12,7 @@ export const DistributionTime = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
+  const [geocoder, setGeocoder] = useState(null);
 
   // Función para verificar si un punto está dentro de un polígono
   const isPointInPolygon = (point, polygon) => {
@@ -33,130 +34,224 @@ export const DistributionTime = () => {
     return inside;
   };
 
-  // Función para geocodificar la dirección usando OpenStreetMap (gratuito)
-  const geocodeAddress = async (address) => {
-    try {
-      const query = `${address}, ${GEOCODING_CONFIG.defaultCity}, ${GEOCODING_CONFIG.defaultProvince}, ${GEOCODING_CONFIG.defaultCountry}`;
-      const response = await fetch(
-        `${GEOCODING_CONFIG.baseUrl}?format=json&q=${encodeURIComponent(query)}&limit=1`
-      );
-      const data = await response.json();
+  // Cargar Google Maps JS API con Places
+  useEffect(() => {
+    if (window.google && window.google.maps && window.google.maps.Geocoder) {
+      initializeGoogleServices();
+    } else {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${GEOCODING_CONFIG.googleMapsApiKey}&libraries=places&loading=async&callback=initGoogleMaps`;
+      script.async = true;
       
-      if (data.length > 0) {
-        return {
-          lat: parseFloat(data[0].lat),
-          lng: parseFloat(data[0].lon),
-          display_name: data[0].display_name
-        };
-      } else {
-        throw new Error(MESSAGES.addressNotFound);
+      // Definir callback global
+      window.initGoogleMaps = () => {
+        initializeGoogleServices();
+      };
+      
+      document.body.appendChild(script);
+    }
+
+    // Limpiar callback al desmontar
+    return () => {
+      if (window.initGoogleMaps) {
+        delete window.initGoogleMaps;
       }
-    } catch {
-      throw new Error(MESSAGES.geocodingError);
+    };
+  }, []);
+
+  const initializeGoogleServices = () => {
+    if (window.google && window.google.maps && window.google.maps.Geocoder) {
+      setGeocoder(new window.google.maps.Geocoder());
+      console.log('Google Maps services initialized successfully');
+    } else {
+      console.error('Google Maps services not available');
     }
   };
 
-  // Función para buscar sugerencias de direcciones más precisas
+  // Función para geocodificar la dirección usando Google Maps Geocoding API
+  const geocodeAddress = async (address) => {
+    return new Promise((resolve, reject) => {
+      if (!geocoder) {
+        reject(new Error('Geocoder no disponible'));
+        return;
+      }
+      geocoder.geocode({
+        address: `${address}, Posadas, Misiones, Argentina`,
+        componentRestrictions: { country: 'AR', locality: 'Posadas' }
+      }, (results, status) => {
+        if (status === 'OK' && results && results.length > 0) {
+          const result = results[0];
+          resolve({
+            lat: result.geometry.location.lat(),
+            lng: result.geometry.location.lng(),
+            display_name: result.formatted_address
+          });
+        } else {
+          reject(new Error(MESSAGES.addressNotFound));
+        }
+      });
+    });
+  };
+
+  // Función para buscar sugerencias usando Google Places Autocomplete
   const searchSuggestions = async (query) => {
     if (!query.trim() || query.length < 3) {
       setSuggestions([]);
       setShowSuggestions(false);
       return;
     }
-
     setIsLoadingSuggestions(true);
     try {
-      // Detectar si es una búsqueda por intersección usando la función mejorada
-      const queryInfo = processIntersectionQuery(query);
-      
-      let searchQuery;
-      if (queryInfo.isIntersection) {
-        // Para intersecciones, buscar de forma más específica
-        searchQuery = `${queryInfo.processed}, Posadas, Misiones, Argentina`;
-      } else {
-        // Para direcciones normales
-        searchQuery = `${queryInfo.processed}, Posadas, Misiones, Argentina`;
-      }
-      
-      const response = await fetch(
-        `${GEOCODING_CONFIG.baseUrl}?format=json&q=${encodeURIComponent(searchQuery)}&limit=10&addressdetails=1&extratags=1`
-      );
-      const data = await response.json();
-      
-      if (data.length > 0) {
-        const formattedSuggestions = data
-          .filter(item => {
-            // Filtrar solo resultados relevantes de la zona
-            const displayName = item.display_name.toLowerCase();
-            return displayName.includes('posadas') || 
-                   displayName.includes('garupá') || 
-                   displayName.includes('garupa') ||
-                   displayName.includes('misiones');
-          })
-          .map(item => {
-            // Formatear la dirección de manera más clara
-            const parts = item.display_name.split(',');
-            const address = parts[0].trim();
-            const neighborhood = parts[1]?.trim();
-            const city = parts[2]?.trim() || 'Posadas';
-            const province = parts[3]?.trim() || 'Misiones';
-            
-            // Extraer información más detallada
-            const addressDetails = item.address || {};
-            const houseNumber = addressDetails.house_number || '';
-            const street = addressDetails.road || address;
-            const suburb = addressDetails.suburb || addressDetails.neighbourhood || neighborhood;
-            
-            // Formatear según el nuevo formato solicitado
-            let formattedParts = [];
-            
-            // Calle
-            if (street) {
-              formattedParts.push(street);
-            }
-            
-            // Altura (número de casa)
-            if (houseNumber) {
-              formattedParts[0] = `${street} ${houseNumber}`;
-            }
-            
-            // Si es intersección, mantener el formato original
-            if (queryInfo.isIntersection && address.toLowerCase().includes(' y ')) {
-              formattedParts = [address];
-            }
-            
-            const mainAddress = formattedParts[0] || address;
-            
-            return {
-              display_name: item.display_name,
-              address: mainAddress,
-              street: street,
-              houseNumber: houseNumber,
-              neighborhood: suburb,
-              city: city,
-              province: province,
-              lat: parseFloat(item.lat),
-              lng: parseFloat(item.lon),
-              type: item.type || 'address',
-              importance: item.importance || 0,
-              isIntersection: queryInfo.isIntersection
-            };
-          })
-          .sort((a, b) => b.importance - a.importance) // Ordenar por importancia
-          .slice(0, 6); // Limitar a 6 resultados
-        
-        setSuggestions(formattedSuggestions);
-        setShowSuggestions(true);
-      } else {
-        setSuggestions([]);
-        setShowSuggestions(false);
-      }
+      await searchSuggestionsGoogle(query);
     } catch (error) {
       console.error('Error buscando sugerencias:', error);
       setSuggestions([]);
       setShowSuggestions(false);
     } finally {
       setIsLoadingSuggestions(false);
+    }
+  };
+
+  // Función para buscar sugerencias usando Google Places
+  const searchSuggestionsGoogle = async (query) => {
+    try {
+      if (!window.google || !window.google.maps || !window.google.maps.places) {
+        throw new Error('Google Maps Places no está disponible');
+      }
+
+      const queryInfo = processIntersectionQuery(query);
+      
+      // Usar el formato específico para intersecciones o direcciones normales
+      const searchQuery = queryInfo.searchFormat;
+      
+      const request = {
+        input: searchQuery,
+        componentRestrictions: { country: 'ar' },
+        locationBias: {
+          center: new window.google.maps.LatLng(GEOCODING_CONFIG.posadas.lat, GEOCODING_CONFIG.posadas.lng),
+          radius: GEOCODING_CONFIG.posadas.radius
+        },
+        types: queryInfo.isIntersection ? ['geocode'] : ['geocode', 'establishment']
+      };
+
+      // Si es intersección, también intentar con diferentes formatos
+      if (queryInfo.isIntersection) {
+        // Intentar múltiples formatos para intersecciones
+        const alternativeFormats = [
+          searchQuery,
+          `${queryInfo.processed}, Posadas, Misiones, Argentina`,
+          `intersection of ${queryInfo.processed}, Posadas, Argentina`,
+          queryInfo.processed.replace(' y ', ' & ') + ', Posadas, Argentina'
+        ];
+        
+        // Usar el primer formato y guardar los alternativos para retry si es necesario
+        request.input = alternativeFormats[0];
+      }
+
+      // Intentar usar AutocompleteSuggestion primero (nueva API)
+      if (window.google.maps.places.AutocompleteSuggestion) {
+        try {
+          const service = new window.google.maps.places.AutocompleteSuggestion();
+          
+          // Verificar si tiene el método getQueryPredictions (nueva API)
+          if (typeof service.getQueryPredictions === 'function') {
+            service.getQueryPredictions(request, (predictions, status) => {
+              handlePredictionsResponse(predictions, status, queryInfo);
+            });
+            return;
+          }
+          // Verificar si tiene el método getPlacePredictions (compatibilidad)
+          else if (typeof service.getPlacePredictions === 'function') {
+            service.getPlacePredictions(request, (predictions, status) => {
+              handlePredictionsResponse(predictions, status, queryInfo);
+            });
+            return;
+          }
+        } catch (error) {
+          console.log('Error con AutocompleteSuggestion:', error.message);
+        }
+      }
+
+      // Fallback a AutocompleteService (API clásica)
+      if (window.google.maps.places.AutocompleteService) {
+        const service = new window.google.maps.places.AutocompleteService();
+        if (typeof service.getPlacePredictions === 'function') {
+          service.getPlacePredictions(request, (predictions, status) => {
+            handlePredictionsResponse(predictions, status, queryInfo);
+          });
+          return;
+        }
+      }
+
+      throw new Error('No hay servicios de autocompletado disponibles');
+
+    } catch (error) {
+      console.error('Error con Google Places:', error);
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
+
+  // Función para manejar la respuesta de las predicciones
+  const handlePredictionsResponse = (predictions, status, queryInfo) => {
+    if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
+      const formattedSuggestions = predictions
+        .filter(prediction => {
+          const description = prediction.description.toLowerCase();
+          return description.includes('posadas') || 
+                 description.includes('misiones');
+        })
+        .map(prediction => {
+          const parts = prediction.description.split(',');
+          let mainAddress = parts[0].trim();
+          const neighborhood = parts[1]?.trim();
+          const city = parts[2]?.trim() || 'Posadas';
+          const province = parts[3]?.trim() || 'Misiones';
+          
+          // Para intersecciones, mantener el formato completo de la consulta
+          if (queryInfo.isIntersection) {
+            // Si la descripción contiene palabras clave de intersección, usarla tal como viene
+            const intersectionKeywords = ['&', ' y ', ' e ', ' and ', 'intersection', 'esquina'];
+            const hasIntersectionKeyword = intersectionKeywords.some(keyword => 
+              prediction.description.toLowerCase().includes(keyword)
+            );
+            
+            if (hasIntersectionKeyword) {
+              mainAddress = parts[0].trim();
+            } else {
+              // Si no tiene palabra clave de intersección, usar la consulta original
+              mainAddress = queryInfo.processed;
+            }
+          }
+          
+          return {
+            display_name: prediction.description,
+            address: mainAddress,
+            street: mainAddress,
+            houseNumber: '',
+            neighborhood: neighborhood,
+            city: city,
+            province: province,
+            place_id: prediction.place_id,
+            isIntersection: queryInfo.isIntersection,
+            prediction: prediction
+          };
+        })
+        .slice(0, 6);
+      
+      setSuggestions(formattedSuggestions);
+      setShowSuggestions(true);
+    } else {
+      console.log('No se encontraron sugerencias o error en el servicio:', status);
+      
+      // Si es una intersección y no encontramos resultados, intentar con formato alternativo
+      if (queryInfo.isIntersection && status !== window.google.maps.places.PlacesServiceStatus.OK) {
+        console.log('Reintentando búsqueda de intersección con formato alternativo...');
+        // Aquí podrías implementar lógica para reintentar con formato diferente
+      }
+      
+      setSuggestions([]);
+      setShowSuggestions(false);
     }
   };
 
@@ -190,6 +285,7 @@ export const DistributionTime = () => {
           zone: foundZone,
           coordinates: coordinates
         });
+        
       } else {
         setResult({
           inDeliveryZone: false,
@@ -258,16 +354,32 @@ export const DistributionTime = () => {
   };
 
   // Función para seleccionar una sugerencia
-  const selectSuggestion = (suggestion) => {
+  const selectSuggestion = async (suggestion) => {
     setAddress(suggestion.address);
     setShowSuggestions(false);
     setSuggestions([]);
     setSelectedSuggestionIndex(-1);
     
-    // Verificar automáticamente la zona al seleccionar
-    setTimeout(() => {
-      checkDeliveryZoneWithCoordinates(suggestion.lat, suggestion.lng, suggestion.address);
-    }, 100);
+    // Si la sugerencia tiene place_id (de Google Places), geocodificar primero
+    if (suggestion.place_id) {
+      try {
+        setIsLoading(true);
+        const coordinates = await geocodeAddress(suggestion.address);
+        setTimeout(() => {
+          checkDeliveryZoneWithCoordinates(coordinates.lat, coordinates.lng, suggestion.address);
+        }, 100);
+      } catch (error) {
+        console.error('Error geocodificando sugerencia:', error);
+        setError('Error al procesar la dirección seleccionada');
+      } finally {
+        setIsLoading(false);
+      }
+    } else if (suggestion.lat && suggestion.lng) {
+      // Si ya tiene coordenadas (fallback), usar directamente
+      setTimeout(() => {
+        checkDeliveryZoneWithCoordinates(suggestion.lat, suggestion.lng, suggestion.address);
+      }, 100);
+    }
   };
 
   // Función para manejar teclas de navegación
@@ -321,21 +433,26 @@ export const DistributionTime = () => {
 
   // Función para detectar y procesar intersecciones
   const processIntersectionQuery = (query) => {
-    const intersectionKeywords = [' y ', ' e ', ' esquina ', ' esq ', ' con ', ' &', ' and '];
+    const intersectionKeywords = [' y ', ' e ', ' esquina ', ' esq ', ' con ', ' &', ' and ', ' intersection '];
     const lowerQuery = query.toLowerCase();
     
     for (const keyword of intersectionKeywords) {
       if (lowerQuery.includes(keyword)) {
+        // Para intersecciones, no agregamos "Posadas, Misiones, Argentina" automáticamente
+        // Esto permite que Google Maps entienda mejor la consulta de intersección
         return {
           isIntersection: true,
-          processed: query.trim()
+          processed: query.trim(),
+          // Formatear para Google Maps con palabra clave específica
+          searchFormat: `${query.trim()} intersection, Posadas, Misiones, Argentina`
         };
       }
     }
     
     return {
       isIntersection: false,
-      processed: query.trim()
+      processed: query.trim(),
+      searchFormat: `${query.trim()}, Posadas, Misiones, Argentina`
     };
   };
 

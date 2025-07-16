@@ -29,10 +29,16 @@ export const MenuList = ({ onItemClick }) => {
         Repartos
       </button>
       <button 
-        onClick={() => handleNavigation('/AboutUs')} 
+        onClick={() => handleNavigation('/Sobre-nosotros')} 
         className="menu-item"
       >
         Sobre Nosotros
+      </button>
+      <button 
+        onClick={() => handleNavigation('/Contactanos')} 
+        className="menu-item"
+      >
+        Contactanos
       </button>
     </div> 
   );

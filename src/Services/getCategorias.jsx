@@ -29,6 +29,7 @@ export const getSubcategoriaPorSlug = async (categoriaSlug, subcategoriaSlug, pa
     const { data } = await axiosInstance.get(`/catalogo/${categoriaSlug}/${subcategoriaSlug}/`, {
       params: { limit, offset },
     });
+    console.log('Datos de subcategoría obtenidos:', data);
     return data;
   } catch (error) {
     console.error(`Error al obtener subcategoría ${subcategoriaSlug}:`, error);

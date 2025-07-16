@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ModernCarousel } from '../Presentation/catalog/ModernCarousel';
 import { ServicesSection } from '../Presentation/home/ServicesSection';
 import { FeaturedCategories } from '../Presentation/home/FeaturedCategories';
+import { StoreHours } from '../Presentation/home/StoreHours';
 
 import './HomePage.css';
 
@@ -15,6 +16,9 @@ const HomePage = () => (
 
     {/* Servicios */}
     <ServicesSection />
+
+    {/* Horarios de Atención */}
+    <StoreHours />
 
     {/* Categorías Destacadas */}
     <FeaturedCategories />

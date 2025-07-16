@@ -43,7 +43,7 @@ export const FeaturedCategories = () => {
         <div className="categories-header">
           <div className="header-content">
             <h2>Explora Nuestras Categorías</h2>
-            <p>Encuentra exactamente lo que necesitas navegando por nuestras categorías principales</p>
+            <p>Encuentra lo que necesitas navegando por nuestras categorías principales</p>
           </div>
           <Link to="/catalogo" className="view-all-link">
             Ver todas
