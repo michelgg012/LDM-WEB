@@ -62,7 +62,6 @@ export const DistributionTime = () => {
   const initializeGoogleServices = () => {
     if (window.google && window.google.maps && window.google.maps.Geocoder) {
       setGeocoder(new window.google.maps.Geocoder());
-      console.log('Google Maps services initialized successfully');
     } else {
       console.error('Google Maps services not available');
     }
@@ -103,8 +102,8 @@ export const DistributionTime = () => {
     setIsLoadingSuggestions(true);
     try {
       await searchSuggestionsGoogle(query);
-    } catch (error) {
-      console.error('Error buscando sugerencias:', error);
+    } catch {
+      console.error('Error buscando sugerencias');
       setSuggestions([]);
       setShowSuggestions(false);
     } finally {
@@ -167,8 +166,8 @@ export const DistributionTime = () => {
             });
             return;
           }
-        } catch (error) {
-          console.log('Error con AutocompleteSuggestion:', error.message);
+        } catch {
+          // Silenciar error de AutocompleteSuggestion
         }
       }
 
@@ -185,8 +184,8 @@ export const DistributionTime = () => {
 
       throw new Error('No hay servicios de autocompletado disponibles');
 
-    } catch (error) {
-      console.error('Error con Google Places:', error);
+    } catch {
+      console.error('Error con servicio de lugares');
       setSuggestions([]);
       setShowSuggestions(false);
     }
@@ -242,13 +241,7 @@ export const DistributionTime = () => {
       setSuggestions(formattedSuggestions);
       setShowSuggestions(true);
     } else {
-      console.log('No se encontraron sugerencias o error en el servicio:', status);
-      
-      // Si es una intersección y no encontramos resultados, intentar con formato alternativo
-      if (queryInfo.isIntersection && status !== window.google.maps.places.PlacesServiceStatus.OK) {
-        console.log('Reintentando búsqueda de intersección con formato alternativo...');
-        // Aquí podrías implementar lógica para reintentar con formato diferente
-      }
+
       
       setSuggestions([]);
       setShowSuggestions(false);
@@ -368,8 +361,8 @@ export const DistributionTime = () => {
         setTimeout(() => {
           checkDeliveryZoneWithCoordinates(coordinates.lat, coordinates.lng, suggestion.address);
         }, 100);
-      } catch (error) {
-        console.error('Error geocodificando sugerencia:', error);
+      } catch {
+        console.error('Error geocodificando sugerencia');
         setError('Error al procesar la dirección seleccionada');
       } finally {
         setIsLoading(false);

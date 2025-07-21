@@ -15,7 +15,7 @@ export const getCatalogo = async ()=> {
        offset += limit;
     return data;
   } catch (error) {
-    console.error('No se ha podido realizar la solicitud', error);
+    console.error('Error al cargar catálogo');
     throw error;
   }
 };

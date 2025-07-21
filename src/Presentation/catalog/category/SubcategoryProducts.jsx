@@ -33,9 +33,9 @@ export const SubcategoryProducts = () => {
         }
         
         setHasMore(data.productos && data.productos.length === PRODUCTS_PER_PAGE);
-      } catch (err) {
+      } catch {
         setError('Error al cargar los productos');
-        console.error(err);
+        console.error('Error al cargar productos');
       } finally {
         setLoading(false);
       }

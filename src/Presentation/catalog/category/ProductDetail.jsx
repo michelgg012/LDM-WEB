@@ -36,9 +36,9 @@ export const ProductDetail = () => {
         if (data.precios && data.precios.length > 0) {
           setSelectedPrice(data.precios[0]);
         }
-      } catch (err) {
+      } catch {
         setError('Error al cargar el producto');
-        console.error(err);
+        console.error('Error al cargar producto');
       } finally {
         setLoading(false);
       }
@@ -91,7 +91,7 @@ export const ProductDetail = () => {
       currency: 'ARS'
     }).format(price);
   };
-  console.log('algo',producto);
+
   
   return (
     <div className="product-detail-container">
@@ -153,7 +153,7 @@ export const ProductDetail = () => {
           <h1 className="product-title">{producto.descripcion}</h1>
           
           <div className="product-meta">
-            <div classNa  me="product-code">
+            <div className="product-code">
               Código: {producto.idarticulo}
             </div>
             

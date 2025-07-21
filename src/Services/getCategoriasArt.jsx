@@ -7,7 +7,7 @@ export const getCategoryaArt = async ()=> {
    
     return data;
   } catch (error) {
-    console.error('No se ha podido realizar la solicitud', error);
+    console.error('Error al cargar categorías de artículos');
     throw error;
   }
 };

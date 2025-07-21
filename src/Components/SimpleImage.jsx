@@ -19,7 +19,7 @@ const SimpleImage = ({
   const base64Fallback = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f8f9fa'/%3E%3Ctext x='150' y='130' text-anchor='middle' fill='%23666' font-family='Arial' font-size='16'%3EImagen no%3C/text%3E%3Ctext x='150' y='150' text-anchor='middle' fill='%23666' font-family='Arial' font-size='16'%3Edisponible%3C/text%3E%3Ctext x='150' y='180' text-anchor='middle' fill='%23999' font-family='Arial' font-size='32'%3E📷%3C/text%3E%3C/svg%3E";
 
   const handleError = (e) => {
-    console.error('❌ Image failed to load:', src);
+    console.error('❌ Image failed to load');
     setHasError(true);
     setIsLoaded(false);
     

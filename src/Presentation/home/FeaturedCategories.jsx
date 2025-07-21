@@ -14,8 +14,8 @@ export const FeaturedCategories = () => {
         const data = await getCategorias();
         // Mostrar solo las primeras 6 categorías
         setCategorias(data.slice(0, 6));
-      } catch (error) {
-        console.error('Error al cargar categorías:', error);
+      } catch {
+        console.error('Error al cargar categorías');
       } finally {
         setLoading(false);
       }

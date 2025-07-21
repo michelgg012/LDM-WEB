@@ -151,8 +151,8 @@ export const DistributionTime = () => {
         setSuggestions([]);
         setShowSuggestions(false);
       }
-    } catch (error) {
-      console.error('Error buscando sugerencias:', error);
+    } catch {
+      console.error('Error buscando sugerencias');
       setSuggestions([]);
       setShowSuggestions(false);
     } finally {

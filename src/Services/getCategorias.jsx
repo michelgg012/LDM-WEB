@@ -6,7 +6,7 @@ export const getCategorias = async () => {
     const { data } = await axiosInstance.get('/catalogo/');
     return data;
   } catch (error) {
-    console.error('Error al obtener categorías:', error);
+    console.error('Error al obtener categorías');
     throw error;
   }
 };
@@ -17,7 +17,7 @@ export const getCategoriaPorSlug = async (slug) => {
     const { data } = await axiosInstance.get(`/catalogo/${slug}/`);
     return data;
   } catch (error) {
-    console.error(`Error al obtener categoría ${slug}:`, error);
+    console.error('Error al obtener categoría específica');
     throw error;
   }
 };
@@ -29,10 +29,9 @@ export const getSubcategoriaPorSlug = async (categoriaSlug, subcategoriaSlug, pa
     const { data } = await axiosInstance.get(`/catalogo/${categoriaSlug}/${subcategoriaSlug}/`, {
       params: { limit, offset },
     });
-    console.log('Datos de subcategoría obtenidos:', data);
     return data;
   } catch (error) {
-    console.error(`Error al obtener subcategoría ${subcategoriaSlug}:`, error);
+    console.error('Error al obtener subcategoría');
     throw error;
   }
 };
@@ -43,7 +42,7 @@ export const getProductoPorSlug = async (categoriaSlug, subcategoriaSlug, produc
     const { data } = await axiosInstance.get(`/catalogo/${categoriaSlug}/${subcategoriaSlug}/${productoSlug}/`);
     return data;
   } catch (error) {
-    console.error(`Error al obtener producto ${productoSlug}:`, error);
+    console.error('Error al obtener producto');
     throw error;
   }
 };

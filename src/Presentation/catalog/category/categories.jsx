@@ -15,9 +15,9 @@ export const Category = () => {
         setLoading(true);
         const data = await getCategorias();
         setCategorias(data);
-      } catch (err) {
+      } catch {
         setError('Error al cargar las categorías');
-        console.error(err);
+        console.error('Error al cargar categorías');
       } finally {
         setLoading(false);
       }

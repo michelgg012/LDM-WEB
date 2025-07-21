@@ -3,15 +3,9 @@ import './BreadcrumbsStyle.css';
 import { capitalizar } from '@/Theme/GlobalTheme';
 
 export const Breadcrumbs = ({ items }) => {
-  console.log('Breadcrumbs recibió items:', items);
-  console.log('Tipo de items:', typeof items);
-  console.log('Es array:', Array.isArray(items));
-  console.log('Longitud:', items?.length);
-  
-  // if (!items || items.length === 0) {
-  //   console.log('Breadcrumbs: retornando null porque no hay items');
-  //   return null;
-  // }
+  if (!items || items.length === 0) {
+    return null;
+  }
 
   return (
     <nav className="breadcrumbs" aria-label="Breadcrumb">
