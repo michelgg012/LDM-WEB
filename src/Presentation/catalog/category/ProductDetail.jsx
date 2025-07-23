@@ -6,6 +6,7 @@ import OptimizedImage from '../../../Components/OptimizedImage';
 import { useOptimizedImage } from '../../../Hooks';
 import './ProductDetail.css';
 
+
 export const ProductDetail = () => {
   const { categoriaSlug, subcategoriaSlug, productoSlug } = useParams();
   const [producto, setProducto] = useState(null);
@@ -151,24 +152,24 @@ export const ProductDetail = () => {
 
         <div className="product-info-section">
           <h1 className="product-title">{producto.descripcion}</h1>
-          
-          <div className="product-meta">
+          <p>{producto.art_detalle ? producto.art_detalle : 'Descripción no disponible'}</p>
+          {/* <div className="product-meta">
             <div className="product-code">
               Código: {producto.idarticulo}
             </div>
             
             {producto.stockmin && (
               <div className="product-stock">
-                Stock mínimo: {producto.stockmin} unidades
+                Peso aproximado por pieza: {producto.stockmin}kg
               </div>
             )}
             
             {producto.peses && (
               <div className="product-weight-info">
-                📏 Producto que se vende por peso
+                 Producto que se vende por peso
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* {producto.precios && producto.precios.length > 0 && (
             <div className="pricing-section">
@@ -208,8 +209,10 @@ export const ProductDetail = () => {
             {/* <button className="add-to-cart-btn">
               🛒 Agregar al carrito
             </button> */}
-            <button className="contact-btn">
-              📞 Consultar disponibilidad
+            <button 
+            onClick={() => window.open(`https://wa.me/5493764374028?text=Hola%2C%20me%20interesa%20obtener%20más%20información%20sobre%20el%20producto%20${producto.descripcion}%20¿Podrían%20ayudarme%3F`)}
+            className="contact-btn">
+               Consultar disponibilidad
             </button>
           </div>
 

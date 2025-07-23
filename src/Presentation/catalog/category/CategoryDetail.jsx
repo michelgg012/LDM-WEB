@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getCategoriaPorSlug } from '../../../Services';
 import { Breadcrumbs } from '../../../Components/Breadcrumbs';
 import './CategoryDetail.css';
+import { Capitalizar } from '@/Theme/Catalogoaux';
 
 export const CategoryDetail = () => {
   const { categoriaSlug } = useParams();
@@ -92,7 +93,7 @@ export const CategoryDetail = () => {
                             }}
                           />
                           <span className="product-preview-name">
-                            {producto.descripcion}
+                            {Capitalizar(producto.descripcion)}
                           </span>
                         </div>
                       ))}

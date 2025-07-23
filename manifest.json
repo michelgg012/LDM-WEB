@@ -1,0 +1,21 @@
+{
+  "name": "Lo De Mario Web",
+  "short_name": "LDM Web",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "description": "Catálogo Lo De Mario",
+  "icons": [
+    {
+      "src": "/src/assets/Image/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/src/assets/Image/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

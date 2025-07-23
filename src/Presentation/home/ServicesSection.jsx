@@ -12,7 +12,7 @@ export const ServicesSection = () => {
     {
       icon: <Clock size={48} />,
       title: "Repartos Diarios",
-      description: "Entregas todos los días en Posadas, Garupá y Candelaria",
+      description: "Entregas de lunes a sabado en Posadas y Garupá. Lunes, miercoles y viernes en Candelaria.",
       color: "text-blue-600"
     },
     // {

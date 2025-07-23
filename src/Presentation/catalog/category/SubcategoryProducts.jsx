@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getSubcategoriaPorSlug } from '../../../Services';
 import { Breadcrumbs } from '../../../Components/Breadcrumbs';
 import './SubcategoryProducts.css';
+import { Capitalizar } from '@/Theme/Catalogoaux';
 
 export const SubcategoryProducts = () => {
   const { categoriaSlug, subcategoriaSlug } = useParams();
@@ -27,7 +28,9 @@ export const SubcategoryProducts = () => {
         
         if (currentPage === 1) {
           setProductos(data.productos || []);
-          setCategoryInfo(data.breadcrumbs);
+          setCategoryInfo(data);
+          console.log(data, 'data from subcategory');
+          
         } else {
           setProductos(prev => [...prev, ...(data.productos || [])]);
         }
@@ -76,15 +79,15 @@ export const SubcategoryProducts = () => {
   // Crear breadcrumb temporal usando los slugs de la URL
   const breadcrumbItems = categoryInfo && categoryInfo.categoria && categoryInfo.subcategoria ? [
     {
-      nombre: categoryInfo.categoria.nombre,
-      url: categoryInfo.categoria.url
+      nombre: categoryInfo.categoria.rubro,
+      url: categoryInfo.categoria.slug
     },
     {
-      nombre: categoryInfo.subcategoria.nombre,
-      url: categoryInfo.subcategoria.url
+      nombre: categoryInfo.subcategoria.subrubro,
+      url: categoryInfo.subcategoria.slug
     }
   ] : [
-    // Breadcrumb temporal usando los slugs
+
     {
       nombre: categoriaSlug.charAt(0).toUpperCase() + categoriaSlug.slice(1).replace('-', ' '),
       url: `/catalogo/${categoriaSlug}`
@@ -94,7 +97,8 @@ export const SubcategoryProducts = () => {
       url: `/catalogo/${categoriaSlug}/${subcategoriaSlug}`
     }
   ];
-
+ console.log(categoryInfo);
+ 
   return (
     <div className="subcategory-container">
     
@@ -103,8 +107,8 @@ export const SubcategoryProducts = () => {
       <div className="subcategory-header">
         {categoryInfo && (
           <>
-            <h1>{categoryInfo.subcategoria.nombre}</h1>
-            <p>Productos de {categoryInfo.subcategoria.nombre.toLowerCase()} en {categoryInfo.categoria.nombre.toLowerCase()}</p>
+            <h1>{categoryInfo.subcategoria.subrubro}</h1>
+            <p>Productos de {categoryInfo.subcategoria.subrubro.toLowerCase()} en {categoryInfo.categoria.rubro.toLowerCase()}</p>
           </>
         )}
       </div>
@@ -129,7 +133,7 @@ export const SubcategoryProducts = () => {
                   />
                 </div>
                 <div className="product-info">
-                  <h3 className="product-title">{producto.descripcion}</h3>
+                  <h3 className="product-title">{Capitalizar(producto.descripcion)}</h3>
                   <div className="product-footer">
                     <span className="view-product">Ver producto →</span>
                   </div>

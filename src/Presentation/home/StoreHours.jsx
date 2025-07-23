@@ -6,7 +6,7 @@ const StoreHours = () => {
       name: "Posadas",
       hours: [
         { days: "Lunes a Sábado", time: "8:30hs a 12:30hs - 16:00hs a 20:00hs" },
-        { days: "Domingos", time: "16:30hs a 20:30hs" }
+        { days: "Domingos", time: "16:30hs a 20:00hs" }
       ]
     },
     {

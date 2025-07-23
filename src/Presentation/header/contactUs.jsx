@@ -61,7 +61,7 @@ export const ContactUs = () => {
            
             <div className="card-content">
               <h3 className="card-title">{section.title}</h3>
-              <p className="card-description">{section.description}</p>
+              {/* <p className="card-description">{section.description}</p> */}
               
               <div className="contact-methods">
                 <button 
@@ -69,7 +69,7 @@ export const ContactUs = () => {
                   className="contact-button phone-button"
                   title={`Llamar a ${section.phone}`}
                 >
-                  <span className="button-icon">📞</span>
+                  <span className="button-icon" style={{ marginRight: '6px' }}>🟢</span>
                   <span className="button-text">{section.phone}</span>
                 </button>
                 
@@ -91,11 +91,9 @@ export const ContactUs = () => {
         <p className="footer-text">
           ¿Tienes alguna pregunta? No dudes en contactarnos
         </p>
-        <p className="footer-hours">
-          Horario de atención: Lunes a Sabado de 8:00 a 12:00 hs - 16:00 a 20:00 hs
-        </p>
+        
          <a href="mailto:Dis_lodemario@outlook.com">
-                  Dis_lodemario@outlook.com
+                  dis_lodemario@outlook.com
                 </a>
       </div>
     </div>

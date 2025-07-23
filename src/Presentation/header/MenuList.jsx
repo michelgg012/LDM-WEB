@@ -22,12 +22,12 @@ export const MenuList = ({ onItemClick }) => {
       >
         Catálogo
       </button>
-      <button 
+      {/* <button 
         onClick={() => handleNavigation('/Reparto')} 
         className="menu-item"
       >
         Repartos
-      </button>
+      </button> */}
       <button 
         onClick={() => handleNavigation('/Sobre-nosotros')} 
         className="menu-item"

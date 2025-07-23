@@ -51,6 +51,17 @@
   margin: 0;
 }
 
+.api-warning {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 .address-form {
   margin-bottom: 30px;
 }

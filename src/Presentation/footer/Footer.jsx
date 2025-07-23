@@ -38,9 +38,11 @@ const Footer = () => {
             <ul className="footer-links">
               <li><Link to="/">Inicio</Link></li>
               <li><Link to="/catalogo">Catálogo</Link></li>
-              <li><Link to="/Reparto">Repartos</Link></li>
+              {/* <li><Link to="/Reparto">Repartos</Link></li> */}
               <li><Link to="/Sobre-nosotros">Sobre Nosotros</Link></li>
-              <li><Link to="/shoppingCart">Carrito</Link></li>
+              <li><Link to="/Contactanos">Contactanos</Link></li>
+
+              {/* <li><Link to="/shoppingCart">Carrito</Link></li> */}
             </ul>
           </div>
 
@@ -87,8 +89,8 @@ const Footer = () => {
               <Mail size={18} />
               <div>
                 <p>Email</p>
-                <a href="mailto:Dis_lodemario@outlook.com">
-                  Dis_lodemario@outlook.com
+                <a href="mailto:dis_lodemario@outlook.com">
+                  dis_lodemario@outlook.com
                 </a>
               </div>
             </div>

@@ -16,3 +16,11 @@ createRoot(document.getElementById('root')).render(
 
 );
 
+// Registrar el service worker para PWA, para poder descargar la app y usarla offline
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/public/service-worker.js')
+      
+  });
+}
+
