@@ -76,27 +76,25 @@ export const SubcategoryProducts = () => {
     );
   }
 
-  // Crear breadcrumb temporal usando los slugs de la URL
-  const breadcrumbItems = categoryInfo && categoryInfo.categoria && categoryInfo.subcategoria ? [
-    {
-      nombre: categoryInfo.categoria.rubro,
-      url: categoryInfo.categoria.slug
-    },
-    {
-      nombre: categoryInfo.subcategoria.subrubro,
-      url: categoryInfo.subcategoria.slug
-    }
-  ] : [
-
-    {
-      nombre: categoriaSlug.charAt(0).toUpperCase() + categoriaSlug.slice(1).replace('-', ' '),
-      url: `/catalogo/${categoriaSlug}`
-    },
-    {
-      nombre: subcategoriaSlug.charAt(0).toUpperCase() + subcategoriaSlug.slice(1).replace('-', ' '),
-      url: `/catalogo/${categoriaSlug}/${subcategoriaSlug}`
-    }
-  ];
+const breadcrumbItems = categoryInfo && categoryInfo.categoria && categoryInfo.subcategoria ? [
+  {
+    nombre: categoryInfo.categoria.rubro,
+    url: `/catalogo/${categoryInfo.categoria.slug}`
+  },
+  {
+    nombre: categoryInfo.subcategoria.subrubro,
+    url: `/catalogo/${categoryInfo.categoria.slug}/${categoryInfo.subcategoria.slug}`
+  }
+] : [
+  {
+    nombre: categoriaSlug.charAt(0).toUpperCase() + categoriaSlug.slice(1).replace('-', ' '),
+    url: `/catalogo/${categoriaSlug}`
+  },
+  {
+    nombre: subcategoriaSlug.charAt(0).toUpperCase() + subcategoriaSlug.slice(1).replace('-', ' '),
+    url: `/catalogo/${categoriaSlug}/${subcategoriaSlug}`
+  }
+];
  console.log(categoryInfo);
  
   return (

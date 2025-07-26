@@ -95,14 +95,14 @@
 }
 
 .view-product {
-  color: #3b82f6;
+  color: #ffffff;
   font-weight: 600;
   font-size: 0.875rem;
   transition: color 0.2s ease;
 }
 
 .product-card:hover .view-product {
-  color: #ffffff;
+  color: #3b82f6;
 }
 
 .load-more-container {

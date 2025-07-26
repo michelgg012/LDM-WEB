@@ -29,21 +29,25 @@ export const AboutUs = () => {
           
           <div className="company-intro">
             <div>
-              <img
+              {/* <img
                 src={rubro1}
                 alt="Nuestra empresa distribuidora"
                 className="company-image"
-              />
+              /> */}
             </div>
             <div className="company-content">
-              <h3>Excelencia en Distribución Gastronómica</h3>
+              {/* <h3>Excelencia en Distribución Gastronómica</h3> */}
               <p>
-                Desde nuestros inicios, nos hemos especializado en la distribución de productos gastronómicos premium para el sector HORECA. Trabajamos con los mejores proveedores nacionales e internacionales para garantizar <span className="highlight-text">fiambres, quesos, embutidos y delicatessen</span> de la más alta calidad.
+                Desde el 2007 nos dedicamos a cubrir las necesidades en el mercado gastronómico de la ciudad de Posadas. En nuestros inicios 
+                comenzamos distribuyendo únicamente muzzarella, luego a medida que los clientes lo iban solicitando, fuimos incorporando otros productos con el objetivo de intentar cubrir todas sus necesidades.  Hoy en día contamos con más de 300 productos buscando brindar un servicio completo a nuestros clientes.
+                Contamos con dos locales, uno en Posadas (sede central) ubicado en Estado de Israel 3542 y otro en Garupá, Colectora Tita Merelo 611. 
+                {/* <span className="highlight-text">fiambres, quesos, embutidos y delicatessen</span>  */}
+                
               </p>
-              <p>
+              {/* <p>
                 Nuestro compromiso va más allá de la simple distribución: somos partners estratégicos de restaurantes, hoteles, bares y catering, ofreciendo soluciones integrales que potencian el éxito de cada negocio gastronómico.
-              </p>
-              <div className="stats-container">
+              </p> */}
+              {/* <div className="stats-container">
                 <div className="stat-item">
                   <span className="stat-number">500+</span>
                   <span className="stat-label">Clientes Satisfechos</span>
@@ -52,7 +56,7 @@ export const AboutUs = () => {
                   <span className="stat-number">15+</span>
                   <span className="stat-label">Años de Experiencia</span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -70,13 +74,14 @@ export const AboutUs = () => {
                 </div>
                 <h3 className="card-title">Nuestra Misión</h3>
               </div>
-              <img
+              {/* <img
                 src={rubro2}
                 alt="Misión de calidad"
                 className="card-image"
-              />
+              /> */}
               <p className="card-description">
-                Proveer productos gastronómicos de excelencia que permitan a nuestros clientes crear experiencias culinarias memorables. Nos comprometemos a ser el puente entre la calidad premium y el éxito gastronómico, garantizando frescura, puntualidad y un servicio personalizado que supere las expectativas.
+                Somos Lodemario una empresa que se dedica a la distribución de insumos gastronómicos en Posadas, Garupá y Candelaria. 
+                Destacamos por nuestros servicios de entregas diarias y la mejor relación precio calidad del mercado.
               </p>
             </div>
 
@@ -90,13 +95,14 @@ export const AboutUs = () => {
                 </div>
                 <h3 className="card-title">Nuestra Visión</h3>
               </div>
-              <img
+              {/* <img
                 src={rubro3}
                 alt="Visión de futuro"
                 className="card-image"
-              />
+              /> */}
               <p className="card-description">
-                Ser la distribuidora líder en el sector gastronómico regional, reconocida por nuestra innovación, sostenibilidad y excelencia en el servicio. Aspiramos a ser el socio estratégico preferido que impulse el crecimiento y la diferenciación de cada establecimiento gastronómico.
+                Apuntamos a ser el socio estratégico preferido que impulse el crecimiento de cada establecimiento gastronómico. Destacando por la
+                innovación, sostenibilidad y excelencia en el servicio.
               </p>
             </div>
           </div>
@@ -108,9 +114,9 @@ export const AboutUs = () => {
             <h2 className="section-title">Nuestros Valores</h2>
             <div className="section-accent-line"></div>
             <div className="values-intro">
-              <p className="values-subtitle">
+              {/* <p className="values-subtitle">
                 Los principios que guían cada decisión y acción en nuestra empresa
-              </p>
+              </p> */}
             </div>
           </div>
 
@@ -131,21 +137,7 @@ export const AboutUs = () => {
               </p>
             </div>
 
-            {/* <div className="value-card">
-              <div className="value-icon">⚡</div>
-              <h3 className="value-title">Eficiencia y Puntualidad</h3>
-              <p className="value-description">
-                Optimizamos nuestros procesos para garantizar entregas puntuales y un servicio ágil que no interrumpa tu operación.
-              </p>
-            </div> */}
-
-            {/* <div className="value-card">
-              <div className="value-icon">🌱</div>
-              <h3 className="value-title">Sostenibilidad</h3>
-              <p className="value-description">
-                Promovemos prácticas responsables con el medio ambiente y apoyamos a productores locales comprometidos.
-              </p>
-            </div> */}
+      
 
             <div className="value-card">
               <div className="value-icon">🔍</div>
@@ -166,7 +158,7 @@ export const AboutUs = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="cta-section">
+        {/* <section className="cta-section">
           <h2 className="cta-title">¿Listo para elevar tu negocio gastronómico?</h2>
           <p className="cta-description">
             Únete a más de 500 establecimientos que confían en nuestra calidad y servicio
@@ -174,7 +166,7 @@ export const AboutUs = () => {
           <button className="cta-button">
             Contacta con Nosotros
           </button>
-        </section>
+        </section> */}
       </div>
     </div>
   )

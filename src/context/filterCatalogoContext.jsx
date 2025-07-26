@@ -17,7 +17,7 @@ export const CatalogoProvider = ({ children }) => {
         setArticulos(data);
         setFilteredArticulos(data);
       }
-    })();
+    });
   }, []);
 
   useEffect(() => {
